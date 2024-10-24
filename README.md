@@ -1,5 +1,11 @@
 # reMarkable
 
+## Planner
+
+* https://github.com/geraldolsribeiro/latex-yearly-planner (Based on amazing [kudrykv](https://github.com/kudrykv/) work).
+
+<img width="532" src="https://github.com/geraldolsribeiro/latex-yearly-planner/blob/main/examples/pictures/rm3.mos.default.dailycal.planner/05_day.png" />
+
 ## Screen Size
 
 ### reMarkable Paper Pro
