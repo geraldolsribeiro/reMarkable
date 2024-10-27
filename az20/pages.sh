@@ -27,12 +27,21 @@ do
     echo "\\end{tabularx}"
 
     # Vertical links to ?.number
+    echo "\\par"
+    echo "\\noindent\\vspace{1cm}"
+    echo "\\setlength{\\extrarowheight}{3pt}"
+    echo "\\begin{tabularx}{\\textwidth}{lX}"
+    echo "\\arrayrulecolor{gray!80}"
     for nn in {0..20}
     do
-      echo ""
-      echo "\\vspace{5mm}"
-      echo "\\hyperlink{${l}-${nn}}{${nn}}"
+      if [ "${nn}" == "${n}" ]; then
+        echo "\\hyperlink{${l}-${nn}}{\\cellcolor{black}{{\\textcolor{white}${nn}}}} & \\\\ \\cline{2-2}"
+      else
+        echo "\\hyperlink{${l}-${nn}}{${nn}} & \\\\ \\cline{2-2}"
+      fi
+      echo "& \\\\ \\cline{2-2}"
     done
+    echo "\\end{tabularx}"
   done
 done
 } > pages.tex
