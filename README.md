@@ -1,5 +1,9 @@
 # reMarkable Resources
 
+This repository intends to be a collection of resources, tips, and hacks related to reMarkable Paper Pro.
+As a software developer I am logging experiences and tests with my RM3 in this repository.
+I assume no responsibility for any damage done to your device due to the use of this software.
+
 ## Screen Size
 
 ### reMarkable Paper Pro
@@ -34,3 +38,7 @@ $ ssh root@10.11.99.1
 # cp sleeping_01.png /usr/share/remarkable/suspended.png
 # mount -o remount,ro /
 ```
+## Disclaimer
+
+This project is not affiliated to, nor endorsed by, [reMarkable](https://remarkable.com/).
+I assume no responsibility for any damage done to your device due to the use of this software.
