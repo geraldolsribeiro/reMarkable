@@ -1,6 +1,7 @@
 #!/bin/bash -e
 
 {
+echo "\\reversemarginpar"
 for l in {A..Z}
 do
   for n in {0..20}
@@ -11,7 +12,7 @@ do
     echo "\\hfill"
 
     # Horizontal links for letters
-    echo "\\begin{tabularx}{15cm}{XXXXXXXXXXXXXXXXXXXXXXXXXX}"
+    echo "\\begin{tabularx}{14cm}{XXXXXXXXXXXXXXXXXXXXXXXXXX}"
     for ll in {A..Z}
     do
       if [ "${ll}" == "${l}" ]; then
@@ -27,19 +28,32 @@ do
     echo "\\end{tabularx}"
 
     # Vertical links to ?.number
-    echo "\\par"
-    echo "\\noindent\\vspace{1cm}"
-    echo "\\setlength{\\extrarowheight}{3pt}"
-    echo "\\begin{tabularx}{\\textwidth}{lX}"
-    echo "\\arrayrulecolor{gray!80}"
+    echo "\\par\\vspace{5mm}"
+    echo "\\marginnote{"
     for nn in {0..20}
     do
       if [ "${nn}" == "${n}" ]; then
-        echo "\\hyperlink{${l}-${nn}}{\\cellcolor{black}{{\\textcolor{white}${nn}}}} & \\\\ \\cline{2-2}"
+        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{yellow}{\\makebox[8mm][c]{\\textcolor{white}\\large ${nn}}}}"
       else
-        echo "\\hyperlink{${l}-${nn}}{${nn}} & \\\\ \\cline{2-2}"
+        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{white}{\\makebox[8mm][c]{\\large ${nn}}}}"
       fi
-      echo "& \\\\ \\cline{2-2}"
+      echo "\\par\\vspace{4mm}"
+    done
+    echo "}"
+
+    echo "\\par \\noindent\\vspace{1cm}"
+    echo "\\setlength{\\extrarowheight}{12pt}"
+    echo "\\begin{tabularx}{\\textwidth}{X}"
+    echo "\\arrayrulecolor{gray!80}"
+    for nn in {0..25}
+    do
+      echo "\\\\ \\hline" 
+      # if [ "${nn}" == "${n}" ]; then
+      #   echo "\\hyperlink{${l}-${nn}}{\\cellcolor{black}{{\\textcolor{white}${nn}}}} & \\\\ \\cline{2-2}"
+      # else
+      #   echo "\\hyperlink{${l}-${nn}}{${nn}} & \\\\ \\cline{2-2}"
+      # fi
+      # echo "& \\\\ \\cline{2-2}"
     done
     echo "\\end{tabularx}"
   done
