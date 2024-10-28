@@ -18,14 +18,14 @@ do
       else
         echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{white}{\\makebox[6mm][c]{\\Large ${nn}}}}"
       fi
-      echo "{\\color{gray!50}\\hrule}"
+      echo "{\\color{gray!80}\\hrule}"
       echo "\\par\\vspace{3mm}"
     done
     echo "\\vspace{-3mm}"
     for nn in {0..4}
     do
       echo "\\par\\vspace{8mm}"
-      echo "{\\color{gray!50}\\hrule}"
+      echo "{\\color{gray!80}\\hrule}"
     done
     echo "\\centering"
     echo "\\par\\vspace{6mm}\\noindent"
