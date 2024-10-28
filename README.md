@@ -38,6 +38,14 @@ $ ssh root@10.11.99.1
 # cp sleeping_01.png /usr/share/remarkable/suspended.png
 # mount -o remount,ro /
 ```
+
+## AZ 20
+
+Custom dictionary template with 20 pages per character (A, B, ...).
+Download from [releases](https://github.com/geraldolsribeiro/reMarkable/releases/download/0.1.0/az20.pdf).
+
+<img width="532" src="https://github.com/geraldolsribeiro/reMarkable/blob/main/az20/az20.png" />
+
 ## Disclaimer
 
 This project is not affiliated to, nor endorsed by, [reMarkable](https://remarkable.com/).
