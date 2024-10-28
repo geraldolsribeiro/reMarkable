@@ -1,60 +1,47 @@
 #!/bin/bash -e
 
 {
-echo "\\reversemarginpar"
+echo "\\setlength{\\extrarowheight}{1pt}"
 for l in {A..Z}
 do
-  for n in {0..20}
+  for n in {1..20}
   do
     echo "\\newpage"
-    # Page number
-    echo "\\hypertarget{${l}-${n}}{{\\Huge ${l}-${n}}}"
-    echo "\\hfill"
+    echo "\\centering"
+    echo "\\hypertarget{${l}-${n}}{\\Huge ${l}\\textsubscript{{${n}}}}\\hfill"
+    echo "\\par\\vspace{1mm}\\raggedright"
 
-    # Horizontal links for letters
-    echo "\\begin{tabularx}{14cm}{XXXXXXXXXXXXXXXXXXXXXXXXXX}"
+    for nn in {1..20}
+    do
+      if [ "${nn}" == "${n}" ]; then
+        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{yellow}{\\makebox[6mm][c]{\\Large\\textcolor{black} ${nn}}}}"
+      else
+        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{white}{\\makebox[6mm][c]{\\Large ${nn}}}}"
+      fi
+      echo "{\\color{gray!50}\\hrule}"
+      echo "\\par\\vspace{3mm}"
+    done
+    echo "\\vspace{-3mm}"
+    for nn in {0..4}
+    do
+      echo "\\par\\vspace{8mm}"
+      echo "{\\color{gray!50}\\hrule}"
+    done
+    echo "\\centering"
+    echo "\\par\\vspace{6mm}\\noindent"
+    echo "\\begin{tabularx}{15cm}{XXXXXXXXXXXXXXXXXXXXXXXXXX}"
     for ll in {A..Z}
     do
       if [ "${ll}" == "${l}" ]; then
-        echo -n "\\hyperlink{${ll}-0}{\\cellcolor{black}{\\textcolor{white}${ll}}}"
+        echo -n "\\hyperlink{${ll}-1}{\\cellcolor{yellow}{\\textcolor{black}{\\Large ${ll}}}}"
       else 
-        echo -n "\\hyperlink{${ll}-0}{${ll}}"
+        echo -n "\\hyperlink{${ll}-1}{\\Large ${ll}}"
       fi
       if [ "${ll}" != "Z" ]; then
         echo -n " &"
       fi
     done
     echo
-    echo "\\end{tabularx}"
-
-    # Vertical links to ?.number
-    echo "\\par\\vspace{5mm}"
-    echo "\\marginnote{"
-    for nn in {0..20}
-    do
-      if [ "${nn}" == "${n}" ]; then
-        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{yellow}{\\makebox[8mm][c]{\\textcolor{white}\\large ${nn}}}}"
-      else
-        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{white}{\\makebox[8mm][c]{\\large ${nn}}}}"
-      fi
-      echo "\\par\\vspace{4mm}"
-    done
-    echo "}"
-
-    echo "\\par \\noindent\\vspace{1cm}"
-    echo "\\setlength{\\extrarowheight}{12pt}"
-    echo "\\begin{tabularx}{\\textwidth}{X}"
-    echo "\\arrayrulecolor{gray!80}"
-    for nn in {0..25}
-    do
-      echo "\\\\ \\hline" 
-      # if [ "${nn}" == "${n}" ]; then
-      #   echo "\\hyperlink{${l}-${nn}}{\\cellcolor{black}{{\\textcolor{white}${nn}}}} & \\\\ \\cline{2-2}"
-      # else
-      #   echo "\\hyperlink{${l}-${nn}}{${nn}} & \\\\ \\cline{2-2}"
-      # fi
-      # echo "& \\\\ \\cline{2-2}"
-    done
     echo "\\end{tabularx}"
   done
 done
