@@ -2,6 +2,12 @@
 
 PAGES=$1
 EXTRA_LINES=$2
+DOUBLE=$3
+if [ "$DOUBLE" == "1" ]; then
+SHIFT=$((PAGES / 2))
+else
+  SHIFT=$PAGES
+fi
 
 {
 echo "\\setlength{\\extrarowheight}{1pt}"
@@ -14,13 +20,21 @@ do
     echo "\\hypertarget{${l}-${n}}{\\Huge ${l}\\textsubscript{{${n}}}}\\hfill"
     echo "\\par\\vspace{1mm}\\raggedright"
 
-    for nn in $(seq 1 ${PAGES})
+    for nn in $(seq 1 ${SHIFT})
     do
       if [ "${nn}" == "${n}" ]; then
         echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{yellow}{\\makebox[6mm][c]{\\Large\\textcolor{black} ${nn}}}}"
       else
         echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{white}{\\makebox[6mm][c]{\\Large ${nn}}}}"
       fi
+        nnr=$(($nn + $SHIFT))
+        if [ "${DOUBLE}" == "1" ]; then
+          if [ "${nnr}" == "${n}" ]; then
+            echo "\\hfill\\hyperlink{${l}-${nnr}}{\\fcolorbox{white}{yellow}{\\makebox[6mm][r]{\\Large ${nnr}}}}"
+          else
+            echo "\\hfill\\hyperlink{${l}-${nnr}}{\\fcolorbox{white}{white}{\\makebox[6mm][r]{\\Large ${nnr}}}}"
+          fi
+        fi
       echo "{\\color{gray!80}\\hrule}"
       echo "\\par\\vspace{3mm}"
     done
