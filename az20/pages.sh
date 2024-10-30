@@ -1,17 +1,20 @@
 #!/bin/bash -e
 
+PAGES=$1
+EXTRA_LINES=$2
+
 {
 echo "\\setlength{\\extrarowheight}{1pt}"
 for l in {A..Z}
 do
-  for n in {1..20}
+  for n in $(seq 1 ${PAGES})
   do
     echo "\\newpage"
     echo "\\centering"
     echo "\\hypertarget{${l}-${n}}{\\Huge ${l}\\textsubscript{{${n}}}}\\hfill"
     echo "\\par\\vspace{1mm}\\raggedright"
 
-    for nn in {1..20}
+    for nn in $(seq 1 ${PAGES})
     do
       if [ "${nn}" == "${n}" ]; then
         echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{yellow}{\\makebox[6mm][c]{\\Large\\textcolor{black} ${nn}}}}"
@@ -22,11 +25,13 @@ do
       echo "\\par\\vspace{3mm}"
     done
     echo "\\vspace{-3mm}"
-    for nn in {0..4}
-    do
-      echo "\\par\\vspace{8mm}"
-      echo "{\\color{gray!80}\\hrule}"
-    done
+    if [ "${EXTRA_LINES}" != "0" ]; then
+      for nn in $(seq 1 ${EXTRA_LINES})
+      do
+        echo "\\par\\vspace{8mm}"
+        echo "{\\color{gray!80}\\hrule}"
+      done
+    fi
     echo "\\centering"
     echo "\\par\\vspace{6mm}\\noindent"
     echo "\\begin{tabularx}{15cm}{XXXXXXXXXXXXXXXXXXXXXXXXXX}"
