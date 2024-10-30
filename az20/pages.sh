@@ -23,16 +23,16 @@ do
     for nn in $(seq 1 ${SHIFT})
     do
       if [ "${nn}" == "${n}" ]; then
-        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{yellow}{\\makebox[6mm][c]{\\Large\\textcolor{black} ${nn}}}}"
+        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{yellow}{\\makebox[5mm][c]{\\Large\\textcolor{black} ${nn}}}}"
       else
-        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{white}{\\makebox[6mm][c]{\\Large ${nn}}}}"
+        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{white}{\\makebox[5mm][c]{\\Large ${nn}}}}"
       fi
         nnr=$(($nn + $SHIFT))
         if [ "${DOUBLE}" == "1" ]; then
           if [ "${nnr}" == "${n}" ]; then
-            echo "\\hfill\\hyperlink{${l}-${nnr}}{\\fcolorbox{white}{yellow}{\\makebox[6mm][r]{\\Large ${nnr}}}}"
+            echo "\\hfill\\hyperlink{${l}-${nnr}}{\\fcolorbox{white}{yellow}{\\makebox[5mm][c]{\\Large ${nnr}}}}"
           else
-            echo "\\hfill\\hyperlink{${l}-${nnr}}{\\fcolorbox{white}{white}{\\makebox[6mm][r]{\\Large ${nnr}}}}"
+            echo "\\hfill\\hyperlink{${l}-${nnr}}{\\fcolorbox{white}{white}{\\makebox[5mm][c]{\\Large ${nnr}}}}"
           fi
         fi
       echo "{\\color{gray!80}\\hrule}"
