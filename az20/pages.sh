@@ -10,29 +10,30 @@ else
 fi
 
 {
-echo "\\setlength{\\extrarowheight}{1pt}"
+echo "\\setlength{\\extrarowheight}{-1pt}"
 for l in {A..Z}
 do
   for n in $(seq 1 ${PAGES})
   do
-    echo "\\newpage"
-    echo "\\centering"
-    echo "\\hypertarget{${l}-${n}}{\\Huge ${l}\\textsubscript{{${n}}}}\\hfill"
-    echo "\\par\\vspace{1mm}\\raggedright"
+    echo "\\newpage\\centering%"
+    echo "\\color{blue}%"
+    echo "\\hypertarget{${l}-${n}}{\\Huge ${l}\\textsubscript{{${n}}}}%"
+    echo "\\par\\vspace{1mm}\\raggedright%"
+    echo "\\color{gray}%"
 
     for nn in $(seq 1 ${SHIFT})
     do
       if [ "${nn}" == "${n}" ]; then
-        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{yellow}{\\makebox[5mm][c]{\\Large\\textcolor{black} ${nn}}}}"
+        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{yellow}{yellow}{\\makebox[5mm][c]{{\\color{blue}\\Large ${nn}}}}}%"
       else
-        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{white}{\\makebox[5mm][c]{\\Large ${nn}}}}"
+        echo "\\hyperlink{${l}-${nn}}{\\fcolorbox{white}{white}{\\makebox[5mm][c]{\\Large ${nn}}}}%"
       fi
         nnr=$(($nn + $SHIFT))
         if [ "${DOUBLE}" == "1" ]; then
           if [ "${nnr}" == "${n}" ]; then
-            echo "\\hfill\\hyperlink{${l}-${nnr}}{\\fcolorbox{white}{yellow}{\\makebox[5mm][c]{\\Large ${nnr}}}}"
+            echo "\\hfill\\hyperlink{${l}-${nnr}}{\\fcolorbox{yellow}{yellow}{\\makebox[5mm][c]{{\\color{blue}\\Large ${nnr}}}}}%"
           else
-            echo "\\hfill\\hyperlink{${l}-${nnr}}{\\fcolorbox{white}{white}{\\makebox[5mm][c]{\\Large ${nnr}}}}"
+            echo "\\hfill\\hyperlink{${l}-${nnr}}{\\fcolorbox{white}{white}{\\makebox[5mm][c]{\\Large ${nnr}}}}%"
           fi
         fi
       echo "{\\color{gray!80}\\hrule}"
@@ -47,12 +48,12 @@ do
       done
     fi
     echo "\\centering"
-    echo "\\par\\vspace{6mm}\\noindent"
+    echo "\\vfill"
     echo "\\begin{tabularx}{15cm}{XXXXXXXXXXXXXXXXXXXXXXXXXX}"
     for ll in {A..Z}
     do
       if [ "${ll}" == "${l}" ]; then
-        echo -n "\\hyperlink{${ll}-1}{\\cellcolor{yellow}{\\textcolor{black}{\\Large ${ll}}}}"
+        echo -n "\\hyperlink{${ll}-1}{\\cellcolor{yellow}{{\\color{blue}{\\Large ${ll}}}}}"
       else 
         echo -n "\\hyperlink{${ll}-1}{\\Large ${ll}}"
       fi

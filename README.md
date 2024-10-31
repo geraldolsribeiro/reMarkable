@@ -39,12 +39,22 @@ $ ssh root@10.11.99.1
 # mount -o remount,ro /
 ```
 
-## AZ 20
+## AZ
+
+### AZ 20
 
 Custom dictionary template with 20 pages per character (A, B, ...).
 Download from [releases](https://github.com/geraldolsribeiro/reMarkable/releases/download/0.1.0/az20.pdf).
 
 <img width="532" src="https://github.com/geraldolsribeiro/reMarkable/blob/main/az20/az20.png" />
+
+### AZ 25
+
+<img width="532" src="https://github.com/geraldolsribeiro/reMarkable/blob/main/az20/az25.png" />
+
+### AZ 50
+
+<img width="532" src="https://github.com/geraldolsribeiro/reMarkable/blob/main/az20/az50.png" />
 
 ## Disclaimer
 
